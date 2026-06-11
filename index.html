@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Mood Music Recommender | Vikram Singh" />
+        <meta property="og:description" content="An interactive AI/ML project guide with HTML, CSS, and JavaScript by Vikram Singh."/>
+        <meta property="og:image" content="https://mood-music-recommender.vercel.app/assets/og.jpeg" />
+        <meta property="og:url" content="https://mood-music-recommender.vercel.app" />
+        <meta property="og:site_name" content="Vikram Singh Portfolio Projects" />
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Mood Music Recommender | Vikram Singh" />
+        <meta name="twitter:description" content="Interactive AI/ML project guide with HTML, CSS, and JavaScript by Vikram Singh."/>
+        <meta name="twitter:image" content="https://mood-music-recommender.vercel.app/assets/og.jpeg" />
+
+        <!-- Author -->
+        <meta name="author" content="Vikram Singh" />
+<title>Mood Music Recommender — Project Guide by Vikram Singh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css"/>
+<style>
+  :root {
+    --bg: #f9f9f8;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f4f4f2;
+    --bg-tertiary: #efefec;
+    --border: rgba(0,0,0,0.1);
+    --border-md: rgba(0,0,0,0.18);
+    --text-primary: #1a1a18;
+    --text-secondary: #6b6b67;
+    --text-muted: #9e9e9a;
+    --purple-bg: #EEEDFE; --purple-text: #3C3489; --purple-border: #AFA9EC;
+    --teal-bg: #E1F5EE; --teal-text: #085041; --teal-border: #5DCAA5;
+    --coral-bg: #FAECE7; --coral-text: #712B13; --coral-border: #F0997B;
+    --amber-bg: #FAEEDA; --amber-text: #633806; --amber-border: #EF9F27;
+    --green-bg: #EAF3DE; --green-text: #27500A; --green-border: #97C459;
+    --gray-bg: #F1EFE8; --gray-text: #444441; --gray-border: #B4B2A9;
+    --blue-bg: #E6F1FB; --blue-text: #0C447C; --blue-border: #85B7EB;
+    --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
+    --font: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+    --sidebar-w: 240px;
+    --header-h: 48px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font); background: var(--bg); color: var(--text-primary);
+    font-size: 14px; line-height: 1.6; min-height: 100vh;
+    display: flex; flex-direction: column;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; height: var(--header-h);
+    background: var(--bg-primary); border-bottom: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 16px 0 18px; z-index: 100; gap: 12px;
+  }
+  .topbar-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .topbar-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .topbar-logo-icon {
+    width: 26px; height: 26px; border-radius: 6px;
+    background: linear-gradient(135deg, #AFA9EC, #5DCAA5);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .topbar-logo-icon i { font-size: 14px; color: #fff; }
+  .topbar-title { font-size: 13px; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+  .topbar-sep { color: var(--border-md); font-size: 16px; }
+  .topbar-credit { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+  .topbar-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .topbar-btn {
+    display: flex; align-items: center; gap: 5px; padding: 5px 10px;
+    border: 0.5px solid var(--border-md); border-radius: var(--radius-sm);
+    background: transparent; cursor: pointer; font-size: 12px;
+    color: var(--text-secondary); font-family: var(--font); transition: background 0.15s;
+    text-decoration: none;
+  }
+  .topbar-btn:hover { background: var(--bg-secondary); }
+  .topbar-btn i { font-size: 14px; }
+
+  /* ── LAYOUT ── */
+  .layout { display: flex; margin-top: var(--header-h); min-height: calc(100vh - var(--header-h)); }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w); flex-shrink: 0; position: fixed;
+    top: var(--header-h); left: 0; bottom: 0;
+    background: var(--bg-primary); border-right: 0.5px solid var(--border);
+    overflow-y: auto; padding: 16px 0;
+  }
+  .sidebar-section-label {
+    font-size: 10px; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 12px 16px 6px;
+  }
+  .sidebar-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 16px; cursor: pointer;
+    font-size: 13px; color: var(--text-secondary);
+    border-left: 2px solid transparent; transition: all 0.12s;
+    text-decoration: none;-webkit-user-select: none; user-select: none;
+  }
+  .sidebar-item:hover { background: var(--bg-secondary); color: var(--text-primary); }
+  .sidebar-item.active { color: var(--text-primary); border-left-color: var(--purple-border); background: var(--purple-bg); }
+  .sidebar-item i { font-size: 15px; flex-shrink: 0; }
+  .sidebar-item .badge {
+    margin-left: auto; font-size: 10px; font-weight: 500; padding: 2px 6px;
+    border-radius: 99px; background: var(--bg-tertiary); color: var(--text-muted);
+  }
+
+  /* ── MAIN ── */
+  .main { margin-left: var(--sidebar-w); flex: 1; padding: 32px 40px 80px; max-width: 860px; }
+
+  /* ── SECTION HEADERS ── */
+  .page-title { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .page-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 32px; }
+  .section { margin-bottom: 36px; scroll-margin-top: 72px; }
+  .section-title {
+    font-size: 11px; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--bg-primary); border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 10px;
+  }
+  .card-header {
+    display: flex; align-items: center; gap: 10px; padding: 11px 16px;
+    cursor: pointer; -webkit-user-select: none; user-select: none; transition: background 0.12s;
+  }
+  .card-header:hover { background: var(--bg-secondary); }
+  .card-title { font-size: 13px; font-weight: 500; flex: 1; }
+  .card-chevron { font-size: 16px; color: var(--text-muted); transition: transform 0.2s; flex-shrink: 0; }
+  .card-chevron.open { transform: rotate(180deg); }
+  .card-body { border-top: 0.5px solid var(--border); padding: 14px 16px; display: none; }
+  .card-body.open { display: block; }
+
+  /* ── BADGE ── */
+  .badge {
+    font-size: 10px; font-weight: 600; padding: 3px 8px;
+    border-radius: 99px; white-space: nowrap; flex-shrink: 0;
+  }
+  .badge-purple { background: var(--purple-bg); color: var(--purple-text); }
+  .badge-teal   { background: var(--teal-bg);   color: var(--teal-text);   }
+  .badge-coral  { background: var(--coral-bg);  color: var(--coral-text);  }
+  .badge-amber  { background: var(--amber-bg);  color: var(--amber-text);  }
+  .badge-green  { background: var(--green-bg);  color: var(--green-text);  }
+  .badge-gray   { background: var(--gray-bg);   color: var(--gray-text);   }
+  .badge-blue   { background: var(--blue-bg);   color: var(--blue-text);   }
+
+  /* ── CODE BLOCK ── */
+  .code-block {
+    background: #1e1e2e; border-radius: var(--radius-md); padding: 12px 14px;
+    font-family: var(--mono); font-size: 12.5px; color: #cdd6f4;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    margin-bottom: 12px; overflow-x: auto;
+  }
+  .code-block code { white-space: nowrap; }
+  .copy-btn {
+    font-size: 11px; font-weight: 500; padding: 4px 9px;
+    border: 0.5px solid rgba(255,255,255,0.15); border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.07); color: #a6adc8; cursor: pointer;
+    font-family: var(--font); transition: all 0.12s; white-space: nowrap; flex-shrink: 0;
+  }
+  .copy-btn:hover { background: rgba(255,255,255,0.14); color: #cdd6f4; }
+
+  /* ── OUTPUT BOX ── */
+  .output-box {
+    background: var(--bg-secondary); border-radius: var(--radius-md);
+    padding: 12px 14px; font-family: var(--mono); font-size: 12px;
+    color: var(--text-secondary); line-height: 1.7; white-space: pre-wrap;
+    max-height: 240px; overflow-y: auto; margin-bottom: 12px;
+    border: 0.5px solid var(--border);
+  }
+  .hl-green { color: #a6e3a1; }
+  .hl-amber { color: #f9e2af; }
+  .hl-blue  { color: #89b4fa; }
+  .hl-muted { color: #6c7086; }
+
+  /* ── EXPLAIN ROW ── */
+  .explain-row {
+    display: flex; gap: 9px; align-items: flex-start;
+    background: var(--blue-bg); border-radius: var(--radius-md);
+    padding: 10px 12px;
+  }
+  .explain-row i { color: var(--blue-text); font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .explain-row p { font-size: 12.5px; color: #0c447c; line-height: 1.6; margin: 0; }
+
+  /* ── STAT CARDS ROW ── */
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .stat-card {
+    background: var(--bg-secondary); border-radius: var(--radius-md);
+    padding: 12px 14px;
+  }
+  .stat-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; font-weight: 500; }
+  .stat-value { font-size: 20px; font-weight: 600; color: var(--text-primary); }
+
+  /* ── STEP LIST ── */
+  .step-list { display: flex; flex-direction: column; gap: 8px; }
+  .step-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--bg-secondary); border-radius: var(--radius-md); padding: 11px 14px;
+  }
+  .step-num {
+    width: 22px; height: 22px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+  }
+  .step-content p.step-title { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+  .step-content p.step-desc { font-size: 12px; color: var(--text-secondary); }
+
+  /* ── ARCH DIAGRAM ── */
+  .arch-wrap { background: var(--bg-secondary); border-radius: var(--radius-lg); padding: 20px; border: 0.5px solid var(--border); }
+  .arch-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 6px; }
+  .arch-node {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 8px 14px; border-radius: var(--radius-md); border: 0.5px solid transparent;
+    font-size: 12px; font-weight: 500; text-align: center; min-width: 110px;
+    cursor: default;
+  }
+  .arch-node small { font-size: 10px; font-weight: 400; opacity: 0.75; margin-top: 1px; }
+  .arch-arrow { font-size: 16px; color: var(--text-muted); flex-shrink: 0; }
+  .arch-split { display: flex; gap: 8px; align-items: flex-start; justify-content: center; margin-bottom: 6px; }
+
+  /* ── FILE TREE ── */
+  .file-tree {
+    background: #1e1e2e; border-radius: var(--radius-md); padding: 14px 16px;
+    font-family: var(--mono); font-size: 12.5px; line-height: 2;
+  }
+  .ft-dir   { color: #89b4fa; }
+  .ft-py    { color: #a6e3a1; }
+  .ft-csv   { color: #f9e2af; }
+  .ft-txt   { color: #cba6f7; }
+  .ft-muted { color: #6c7086; }
+  .ft-line  { display: flex; align-items: center; gap: 0; }
+  .ft-indent { display: inline-block; width: 20px; flex-shrink: 0; }
+
+  /* ── CTA BUTTON ── */
+  .cta-row { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+  .cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: var(--radius-md);
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    font-family: var(--font); border: 0.5px solid var(--border-md);
+    background: var(--bg-primary); color: var(--text-primary); transition: all 0.14s;
+    text-decoration: none;
+  }
+  .cta:hover { background: var(--bg-secondary); }
+  .cta.primary { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+  .cta.primary:hover { opacity: 0.88; }
+
+  /* ── DIVIDER ── */
+  .divider { height: 0.5px; background: var(--border); margin: 28px 0; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-md); border-radius: 99px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 20px 16px 60px; }
+    .topbar-credit { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="topbar-left">
+    <a href="/" class="topbar-logo">
+      <div class="topbar-logo-icon"></div>
+      <span class="topbar-title">Mood Music Recommender</span>
+    </a>
+    <span class="topbar-sep">/</span>
+    <span class="topbar-credit">Made by Babamosie333 – Vikram Singh</span>
+  </div>
+  <div class="topbar-right">
+    <button class="topbar-btn" onclick="window.print()"><i class="ti ti-printer"></i> Print</button>
+    <a href="https://vikramsingh.itsfolio.tech" rel="noopener noreferrer" target="_blank" class="topbar-btn"><i class="ti ti-brand-claude"></i> View Portfolio</a>
+    <a href="https://github.com/babamosie333" rel="noopener noreferrer" target="_blank" class="topbar-btn"><i class="ti ti-brand-claude"></i> View GitHub</a>
+  </div>
+</header>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section-label">Getting started</div>
+  <a class="sidebar-item active" href="#overview" onclick="setActive(this)"><i class="ti ti-layout-dashboard"></i> Overview</a>
+  <a class="sidebar-item" href="#setup" onclick="setActive(this)"><i class="ti ti-package"></i> Setup <span class="badge">1 cmd</span></a>
+  <a class="sidebar-item" href="#structure" onclick="setActive(this)"><i class="ti ti-folder-open"></i> File structure</a>
+
+  <div class="sidebar-section-label">Commands</div>
+  <a class="sidebar-item" href="#train" onclick="setActive(this)"><i class="ti ti-cpu"></i> Train models <span class="badge">1 cmd</span></a>
+  <a class="sidebar-item" href="#recommend" onclick="setActive(this)"><i class="ti ti-music-search"></i> Get recs <span class="badge">2 modes</span></a>
+
+  <div class="sidebar-section-label">How it works</div>
+  <a class="sidebar-item" href="#data" onclick="setActive(this)"><i class="ti ti-table"></i> Dataset</a>
+  <a class="sidebar-item" href="#models" onclick="setActive(this)"><i class="ti ti-brain"></i> ML models</a>
+  <a class="sidebar-item" href="#recommender" onclick="setActive(this)"><i class="ti ti-chart-dots"></i> Recommender</a>
+  <a class="sidebar-item" href="#charts" onclick="setActive(this)"><i class="ti ti-chart-bar"></i> Output charts</a>
+
+  <div class="sidebar-section-label">Architecture</div>
+  <a class="sidebar-item" href="#arch" onclick="setActive(this)"><i class="ti ti-topology-star"></i> System flow</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <h1 class="page-title">Project guide</h1>
+    <p class="page-sub">Full walkthrough — setup, commands, outputs, and how everything works.</p>
+
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Songs in dataset</div><div class="stat-value">80</div></div>
+      <div class="stat-card"><div class="stat-label">Moods covered</div><div class="stat-value">8</div></div>
+      <div class="stat-card"><div class="stat-label">Genres</div><div class="stat-value">38</div></div>
+      <div class="stat-card"><div class="stat-label">ML models trained</div><div class="stat-value">4</div></div>
+      <div class="stat-card"><div class="stat-label">Best accuracy</div><div class="stat-value">68.7%</div></div>
+    </div>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num" style="background:var(--purple-bg);color:var(--purple-text);">1</div>
+        <div class="step-content"><p class="step-title">Install dependencies</p><p class="step-desc">One command installs pandas, scikit-learn, matplotlib, seaborn, and joblib.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--teal-bg);color:var(--teal-text);">2</div>
+        <div class="step-content"><p class="step-title">Run training pipeline</p><p class="step-desc">Trains 4 models, picks the best, saves it, and generates all charts automatically.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num" style="background:var(--coral-bg);color:var(--coral-text);">3</div>
+        <div class="step-content"><p class="step-title">Get recommendations</p><p class="step-desc">Interactive CLI — pick a mood or enter audio feature values to get song suggestions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SETUP -->
+  <section class="section" id="setup">
+    <p class="section-title"><i class="ti ti-package" style="font-size:13px"></i> Setup</p>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-gray">Step 1</span>
+        <span class="card-title">Install all dependencies</span>
+        <i class="ti ti-chevron-down card-chevron open"></i>
+      </div>
+      <div class="card-body open">
+        <div class="code-block"><code>pip install -r requirements.txt</code><button class="copy-btn" onclick="copyText(this,'pip install -r requirements.txt')">Copy</button></div>
+        <div class="output-box"><span class="hl-muted">Collecting</span> pandas>=1.5.0
+<span class="hl-muted">Collecting</span> numpy>=1.23.0
+<span class="hl-muted">Collecting</span> scikit-learn>=1.2.0
+<span class="hl-muted">Collecting</span> matplotlib>=3.6.0
+<span class="hl-muted">Collecting</span> seaborn>=0.12.0
+<span class="hl-muted">Collecting</span> joblib>=1.2.0
+<span class="hl-green">Successfully installed all packages ✓</span></div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>Installs all Python libraries: <strong>pandas</strong> for data handling, <strong>scikit-learn</strong> for ML algorithms, <strong>matplotlib + seaborn</strong> for visualizations, and <strong>joblib</strong> for saving/loading the trained model to disk.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-gray">Note</span>
+        <span class="card-title">Python version requirement</span>
+        <i class="ti ti-chevron-down card-chevron"></i>
+      </div>
+      <div class="card-body">
+        <div class="code-block"><code>python --version   # requires Python 3.8+</code><button class="copy-btn" onclick="copyText(this,'python --version')">Copy</button></div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>Project requires Python 3.8 or newer. If <code>pip</code> gives errors on Linux, use <code>pip install -r requirements.txt --break-system-packages</code>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILE STRUCTURE -->
+  <section class="section" id="structure">
+    <p class="section-title"><i class="ti ti-folder-open" style="font-size:13px"></i> File structure</p>
+    <div class="file-tree">
+<span class="ft-dir">mood_music_recommender/</span>
+├── <span class="ft-dir">data/</span>
+│   └── <span class="ft-csv">songs.csv</span>            <span class="ft-muted"># 80 songs with audio features</span>
+├── <span class="ft-dir">models/</span>
+│   ├── <span class="ft-py">__init__.py</span>
+│   ├── <span class="ft-py">classifier.py</span>        <span class="ft-muted"># 4 ML models + comparison</span>
+│   └── <span class="ft-py">recommender.py</span>       <span class="ft-muted"># cosine similarity engine</span>
+├── <span class="ft-dir">utils/</span>
+│   ├── <span class="ft-py">__init__.py</span>
+│   ├── <span class="ft-py">preprocessing.py</span>     <span class="ft-muted"># data loading & feature scaling</span>
+│   └── <span class="ft-py">visualize.py</span>         <span class="ft-muted"># all 5 chart generators</span>
+├── <span class="ft-py">train.py</span>                 <span class="ft-muted"># full training pipeline (run first)</span>
+├── <span class="ft-py">recommend.py</span>             <span class="ft-muted"># interactive CLI</span>
+└── <span class="ft-txt">requirements.txt</span>         <span class="ft-muted"># dependencies</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TRAIN -->
+  <section class="section" id="train">
+    <p class="section-title"><i class="ti ti-cpu" style="font-size:13px"></i> Training pipeline</p>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-purple">Train</span>
+        <span class="card-title">Run the full training pipeline</span>
+        <i class="ti ti-chevron-down card-chevron open"></i>
+      </div>
+      <div class="card-body open">
+        <div class="code-block"><code>python train.py</code><button class="copy-btn" onclick="copyText(this,'python train.py')">Copy</button></div>
+        <div class="output-box"><span class="hl-muted">============================================================</span>
+<span class="hl-blue">  Mood-Based Music Recommender — Training Pipeline</span>
+<span class="hl-muted">============================================================</span>
+Loaded 80 songs across 8 moods and 38 genres.
+
+<span class="hl-amber">===== Model Comparison =====</span>
+Model                      Train Acc   Test Acc    CV Mean
+---------------------------------------------------------
+Decision Tree                 90.62%     68.75%     55.00%
+K-Nearest Neighbors           79.69%     56.25%     61.25%
+Random Forest                100.00%     50.00%     60.00%
+Naive Bayes                   85.94%     62.50%     63.75%
+
+<span class="hl-green">✅  Best model: Decision Tree (test accuracy: 68.75%)</span>
+
+<span class="hl-amber">===== Generating Visualizations =====</span>
+  Saved: outputs/confusion_matrix.png
+  Saved: outputs/feature_importance.png
+  Saved: outputs/mood_clusters.png
+  Saved: outputs/model_comparison.png
+
+<span class="hl-amber">===== Quick Recommendation Demo =====</span>
+Top 3 songs for mood: HAPPY
+   title               artist             genre   similarity
+1  Happy               Pharrell Williams  Pop     0.999656
+2  Shake It Off        Taylor Swift       Pop     0.998345
+3  I Gotta Feeling     Black Eyed Peas    Dance   0.993161
+
+<span class="hl-green">✅  Training complete! All outputs saved to 'outputs/'</span></div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>This single command runs everything: loads data, scales features, trains 4 classifiers, picks the best, saves it to <code>models/saved/</code>, and auto-generates all charts. Run this once before using the recommender.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOMMEND -->
+  <section class="section" id="recommend">
+    <p class="section-title"><i class="ti ti-music-search" style="font-size:13px"></i> Interactive recommender</p>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-coral">Mode 1</span>
+        <span class="card-title">Recommend by mood label</span>
+        <i class="ti ti-chevron-down card-chevron open"></i>
+      </div>
+      <div class="card-body open">
+        <div class="code-block"><code>python recommend.py</code><button class="copy-btn" onclick="copyText(this,'python recommend.py')">Copy</button></div>
+        <div class="output-box">Choose a mode:
+  <span class="hl-blue">1.</span> Recommend by mood (pick a mood label)
+  <span class="hl-blue">2.</span> Recommend by audio features
+  <span class="hl-blue">3.</span> Exit
+
+Your choice [1/2/3]: <span class="hl-green">1</span>
+
+Available moods:
+  1.Happy  2.Sad  3.Energetic  4.Calm  5.Romantic  6.Focused  7.Angry  8.Nostalgic
+
+Enter mood number or name: <span class="hl-green">1</span>
+
+Available genres for 'happy': Dance, Disco, Funk, Indie Pop, Pop
+Filter by genre? (Enter to skip): <span class="hl-green">Pop</span>
+How many recommendations? [default: 5]: <span class="hl-green">3</span>
+
+<span class="hl-amber">🎶  Top picks for 'HAPPY' mood:</span>
+
+  #    Title                Artist             Genre    Match
+  ───────────────────────────────────────────────────────
+  1    Happy                Pharrell Williams  Pop      1.00
+  2    Shake It Off         Taylor Swift       Pop      1.00
+  3    Can't Stop Feeling   Justin Timberlake  Pop      0.99</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>Pick from 8 mood labels, optionally filter by genre, and choose how many songs to return. Cosine similarity ranks songs closest to the ideal audio fingerprint for that mood.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-coral">Mode 2</span>
+        <span class="card-title">Recommend by audio features</span>
+        <i class="ti ti-chevron-down card-chevron"></i>
+      </div>
+      <div class="card-body">
+        <div class="code-block"><code>python recommend.py</code><button class="copy-btn" onclick="copyText(this,'python recommend.py')">Copy</button></div>
+        <div class="output-box">Your choice [1/2/3]: <span class="hl-green">2</span>
+
+  Energy       (0–1): <span class="hl-green">0.9</span>
+  Valence      (0–1): <span class="hl-green">0.3</span>
+  Tempo        (BPM): <span class="hl-green">180</span>
+  Danceability (0–1): <span class="hl-green">0.7</span>
+  Acousticness (0–1): <span class="hl-green">0.03</span>
+
+<span class="hl-blue">🧠  Predicted mood from your features: ANGRY</span>
+
+<span class="hl-amber">🎶  Top picks for 'ANGRY' mood:</span>
+
+  #    Title                 Artist                Genre     Match
+  ─────────────────────────────────────────────────────────────
+  1    Master of Puppets     Metallica             Metal     0.98
+  2    Till I Collapse       Eminem                Rap       0.97
+  3    Chop Suey!            System of a Down      Metal     0.96
+  4    Lose Yourself         Eminem                Rap       0.94
+  5    Down with the Sickness Disturbed            Metal     0.93</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>Enter raw audio values and the system auto-predicts which mood they match by comparing your feature vector against 8 pre-defined mood profiles using cosine similarity.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- DATA -->
+  <section class="section" id="data">
+    <p class="section-title"><i class="ti ti-table" style="font-size:13px"></i> Dataset — songs.csv</p>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-amber">Data</span>
+        <span class="card-title">80 songs × 10 columns — what each column means</span>
+        <i class="ti ti-chevron-down card-chevron open"></i>
+      </div>
+      <div class="card-body open">
+        <div class="output-box">Column          Type     Range    Description
+──────────────────────────────────────────────────────────
+title           string   —        song name
+artist          string   —        artist name
+genre           string   —        38 unique genres
+mood            string   —        label: happy/sad/energetic/calm/
+                                        romantic/focused/angry/nostalgic
+energy          float    0–1      0 = very quiet, 1 = very intense
+valence         float    0–1      0 = sad/negative, 1 = happy/positive
+tempo           float    BPM      speed (e.g. 120 = medium, 180 = fast)
+danceability    float    0–1      suitability for dancing
+acousticness    float    0–1      0 = electric/synth, 1 = fully acoustic
+popularity      int      0–100    streaming count proxy</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>The 6 numeric columns (energy → popularity) are the <strong>features</strong> the ML model learns from. The <code>mood</code> column is the <strong>label</strong> it predicts. To improve accuracy, add more rows to songs.csv in the same format — or connect to the Spotify API which provides these exact values for any track.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODELS -->
+  <section class="section" id="models">
+    <p class="section-title"><i class="ti ti-brain" style="font-size:13px"></i> ML models (classifier.py)</p>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-purple">ML</span>
+        <span class="card-title">Decision Tree — winner at 68.75% test accuracy</span>
+        <i class="ti ti-chevron-down card-chevron open"></i>
+      </div>
+      <div class="card-body open">
+        <div class="output-box">Strategy: learns a series of if/else rules on feature values.
+
+Example rule learned:
+  IF valence > 0.70 AND energy > 0.60
+    → predict: happy
+
+  IF acousticness > 0.75 AND valence < 0.30
+    → predict: sad
+
+  IF energy > 0.88 AND valence < 0.45
+    → predict: angry
+
+Pros: fast, explainable, human-readable rules.
+Cons: can overfit (memorise training data).</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>The tree splits features at thresholds that best separate moods. Each split maximises "information gain" — how much knowing the answer reduces uncertainty about the mood label.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-purple">ML</span>
+        <span class="card-title">K-Nearest Neighbors — 56.25% test accuracy</span>
+        <i class="ti ti-chevron-down card-chevron"></i>
+      </div>
+      <div class="card-body">
+        <div class="output-box">Strategy: find the 3 most similar songs in feature space and vote.
+
+Example:
+  Your song has energy=0.8, valence=0.9 →
+  Find 3 nearest songs in 6D space →
+  2 are "happy", 1 is "energetic" →
+  Prediction: happy (majority vote)
+
+Pros: intuitive, no training phase.
+Cons: slow on large datasets, sensitive to feature scale.</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>KNN doesn't actually "learn" anything — it just memorises the dataset and compares new songs to existing ones at prediction time using Euclidean distance in feature space.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-purple">ML</span>
+        <span class="card-title">Random Forest — 100% train / 50% test (overfit)</span>
+        <i class="ti ti-chevron-down card-chevron"></i>
+      </div>
+      <div class="card-body">
+        <div class="output-box">Strategy: 100 decision trees trained on random data subsets, then vote.
+
+Why it overfit here:
+  - Only 80 songs (10 per mood)
+  - 100 trees memorised tiny training splits
+  - Not enough data to generalise
+
+Fix: add more songs to songs.csv.
+With 500+ songs, Random Forest usually wins.
+
+Pros: handles noise, resistant to overfitting on larger datasets.
+Cons: slow to train, less explainable.</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>The 100% train / 50% test gap is a classic overfitting signal. The ensemble memorised the 70 training songs perfectly but failed to generalise. More data always helps Random Forest the most.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-purple">ML</span>
+        <span class="card-title">Naive Bayes — 62.50% test accuracy</span>
+        <i class="ti ti-chevron-down card-chevron"></i>
+      </div>
+      <div class="card-body">
+        <div class="output-box">Strategy: uses probability theory — P(mood | features).
+
+Uses Bayes' theorem:
+  P(happy | energy=0.8, valence=0.9) ∝
+    P(energy=0.8 | happy) × P(valence=0.9 | happy) × P(happy)
+
+"Naive" = assumes features are independent of each other.
+In reality, energy and danceability are correlated — but the
+approximation still works reasonably well.
+
+Pros: very fast, works well with small datasets.
+Cons: independence assumption is rarely true.</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>Despite its simplifying assumption, Naive Bayes often outperforms more complex models on small datasets — which is why it achieved the best cross-validation score (63.75%) even though Decision Tree won on the test set.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOMMENDER -->
+  <section class="section" id="recommender">
+    <p class="section-title"><i class="ti ti-chart-dots" style="font-size:13px"></i> How the recommender works</p>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-teal">Core</span>
+        <span class="card-title">Cosine similarity — step by step</span>
+        <i class="ti ti-chevron-down card-chevron open"></i>
+      </div>
+      <div class="card-body open">
+        <div class="output-box">Step 1: Each mood has a pre-defined "ideal" audio profile (6D vector)
+
+  happy    → [0.80, 0.90, 0.65, 0.85, 0.10, 0.85]
+  calm     → [0.12, 0.55, 0.25, 0.20, 0.90, 0.75]
+  angry    → [0.95, 0.28, 0.75, 0.68, 0.03, 0.85]
+             energy valence tempo dance acoustic pop
+
+Step 2: All 80 songs are represented as scaled 6D vectors.
+
+Step 3: Cosine similarity = cos(θ) between two vectors
+  similarity = (A · B) / (|A| × |B|)
+  Result: 0 = completely different direction
+          1 = identical direction = perfect match
+
+Step 4: All songs ranked by similarity → top N returned.
+
+Why cosine (not Euclidean distance)?
+  Cosine ignores magnitude — a soft happy song and a
+  loud happy song both point in the "happy direction"
+  and both score high. Euclidean would penalise the soft one.</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>This is content-based filtering — each song is matched based on its own audio properties rather than "users who liked X also liked Y". It works even with no user rating history, making it perfect for a beginner project.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHARTS -->
+  <section class="section" id="charts">
+    <p class="section-title"><i class="ti ti-chart-bar" style="font-size:13px"></i> Output charts (auto-generated)</p>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-amber">Chart 1</span>
+        <span class="card-title">model_comparison.png — which model is best?</span>
+        <i class="ti ti-chevron-down card-chevron open"></i>
+      </div>
+      <div class="card-body open">
+        <div class="output-box">Grouped bar chart: 4 models × 3 metrics
+
+  Train accuracy → how well it learned training data
+  Test accuracy  → performance on unseen songs (most important)
+  CV mean        → 5-fold cross-validation average (most reliable)
+
+Big gap between Train & Test = overfitting
+  Random Forest: 100% train vs 50% test = severely overfit
+  Decision Tree:  91% train vs 69% test = mild overfit, acceptable</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>Cross-validation (CV) is more reliable than a single test split because it averages 5 different train/test splits. A model with high CV mean and low CV std is the most trustworthy for real-world use.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-amber">Chart 2</span>
+        <span class="card-title">mood_clusters.png — visualising 6D data in 2D</span>
+        <i class="ti ti-chevron-down card-chevron"></i>
+      </div>
+      <div class="card-body">
+        <div class="output-box">Scatter plot using PCA (Principal Component Analysis)
+
+PCA compresses 6 audio features → 2 axes:
+  PC1 (≈42% variance) = mainly energy + danceability
+  PC2 (≈28% variance) = mainly valence + acousticness
+
+Each dot = one song, colored by mood.
+
+What tight clusters mean: mood is easy to classify
+What overlapping clusters mean: moods share similar audio
+  (energetic + angry often overlap — both high energy, low valence)</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>PCA finds the directions in 6D space where songs vary the most, then projects everything onto 2 axes you can plot. Well-separated clusters in this 2D view usually predict good classification accuracy.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-amber">Chart 3</span>
+        <span class="card-title">confusion_matrix.png — where the model makes mistakes</span>
+        <i class="ti ti-chevron-down card-chevron"></i>
+      </div>
+      <div class="card-body">
+        <div class="output-box">8×8 heatmap: rows = actual mood, columns = predicted mood
+
+Reading it:
+  Diagonal cells (top-left to bottom-right) = correct predictions
+  Off-diagonal = mistakes
+
+Example:
+  Row "angry", Col "energetic" = 1
+    → 1 angry song was incorrectly predicted as energetic
+      (makes sense: both have high energy)
+
+  Row "romantic", Col "romantic" = 2
+    → both romantic test songs predicted correctly ✓</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>The most common mix-ups reveal which moods are musically similar in the feature space. Angry and energetic frequently confuse classifiers because they share high energy and fast tempo — only valence truly separates them.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-amber">Chart 4</span>
+        <span class="card-title">feature_importance.png — what matters most?</span>
+        <i class="ti ti-chevron-down card-chevron"></i>
+      </div>
+      <div class="card-body">
+        <div class="output-box">Horizontal bar chart: importance score per feature (Decision Tree)
+
+Typical result:
+  valence      ████████████  0.38   ← biggest mood signal
+  energy       ████████      0.27   ← intensity
+  acousticness ██████        0.18   ← electric vs acoustic
+  tempo        ████          0.10   ← song speed
+  danceability ██            0.05
+  popularity   █             0.02
+
+Interpretation:
+  Valence (positivity score) is the single most important feature.
+  High valence → likely happy/romantic/nostalgic
+  Low valence  → likely sad/angry/focused</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>Feature importance is measured by how much each split on that feature reduces impurity (Gini index) across all 5 tree levels. Features used near the top of the tree affect more samples, so they tend to score higher.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" onclick="toggle(this)">
+        <span class="badge badge-amber">Chart 5</span>
+        <span class="card-title">recommendations_happy.png — similarity scores</span>
+        <i class="ti ti-chevron-down card-chevron"></i>
+      </div>
+      <div class="card-body">
+        <div class="output-box">Horizontal bar chart: top 5 songs for "happy" mood
+
+  1. Happy — Pharrell Williams        ████████████  1.000
+  2. Shake It Off — Taylor Swift      ████████████  0.998
+  3. I Gotta Feeling — Black Eyed Peas ███████████  0.993
+  4. Can't Stop the Feeling           ██████████    0.990
+  5. Uptown Funk — Bruno Mars         ██████████    0.988
+
+Score of 1.0 = perfect cosine alignment with the happy profile</div>
+        <div class="explain-row"><i class="ti ti-info-circle"></i><p>A score close to 1.0 means the song's feature vector points in almost exactly the same direction as the mood's ideal vector. Scores below 0.85 suggest the song has a mixed audio fingerprint — it fits the mood but not perfectly.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ARCHITECTURE -->
+  <section class="section" id="arch">
+    <p class="section-title"><i class="ti ti-topology-star" style="font-size:13px"></i> System flow</p>
+
+    <div class="arch-wrap">
+      <div class="arch-row">
+        <div class="arch-node" style="background:var(--gray-bg);color:var(--gray-text);border-color:var(--gray-border);">
+          <i class="ti ti-file-spreadsheet" style="font-size:18px;margin-bottom:4px"></i>
+          data/songs.csv<small>80 songs</small>
+        </div>
+      </div>
+      <div style="text-align:center;color:var(--text-muted);font-size:20px;margin:2px 0">↓</div>
+      <div class="arch-row">
+        <div class="arch-node" style="background:var(--teal-bg);color:var(--teal-text);border-color:var(--teal-border);">
+          <i class="ti ti-adjustments" style="font-size:18px;margin-bottom:4px"></i>
+          preprocessing.py<small>scale + encode</small>
+        </div>
+      </div>
+      <div style="text-align:center;color:var(--text-muted);font-size:20px;margin:2px 0">↓</div>
+      <div class="arch-row">
+        <div class="arch-node" style="background:var(--purple-bg);color:var(--purple-text);border-color:var(--purple-border);">
+          <i class="ti ti-brain" style="font-size:18px;margin-bottom:4px"></i>
+          classifier.py<small>4 ML models</small>
+        </div>
+      </div>
+      <div style="text-align:center;color:var(--text-muted);font-size:20px;margin:2px 0">↓</div>
+      <div class="arch-split">
+        <div class="arch-node" style="background:var(--green-bg);color:var(--green-text);border-color:var(--green-border);flex:1;">
+          <i class="ti ti-device-floppy" style="font-size:18px;margin-bottom:4px"></i>
+          model saved<small>models/saved/</small>
+        </div>
+        <div class="arch-node" style="background:var(--amber-bg);color:var(--amber-text);border-color:var(--amber-border);flex:1;">
+          <i class="ti ti-chart-bar" style="font-size:18px;margin-bottom:4px"></i>
+          visualize.py<small>4 charts</small>
+        </div>
+        <div class="arch-node" style="background:var(--coral-bg);color:var(--coral-text);border-color:var(--coral-border);flex:1;">
+          <i class="ti ti-chart-dots" style="font-size:18px;margin-bottom:4px"></i>
+          recommender.py<small>cosine sim</small>
+        </div>
+      </div>
+      <div style="text-align:center;color:var(--text-muted);font-size:20px;margin:2px 0">↓</div>
+      <div class="arch-row">
+        <div class="arch-node" style="background:var(--coral-bg);color:var(--coral-text);border-color:var(--coral-border);">
+          <i class="ti ti-terminal" style="font-size:18px;margin-bottom:4px"></i>
+          recommend.py<small>interactive CLI</small>
+        </div>
+      </div>
+      <div style="text-align:center;color:var(--text-muted);font-size:20px;margin:2px 0">↓</div>
+      <div class="arch-row">
+        <div class="arch-node" style="background:var(--green-bg);color:var(--green-text);border-color:var(--green-border);">
+          <i class="ti ti-music" style="font-size:18px;margin-bottom:4px"></i>
+          Top N recommendations<small>ranked by mood match</small>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:14px"><code>python train.py</code> runs the entire top half automatically</p>
+    </div>
+
+    <div class="cta-row" style="margin-top:24px">
+      <button class="cta" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ti ti-arrow-up"></i> Back to top</button>
+    </div>
+  </section>
+
+</main>
+</div>
+
+<script>
+function toggle(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.card-chevron');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chevron.classList.toggle('open', !isOpen);
+}
+
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+  });
+  const orig = btn.textContent;
+  btn.textContent = 'Copied!';
+  setTimeout(() => btn.textContent = orig, 1400);
+}
+
+function setActive(el) {
+  document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Highlight sidebar on scroll
+const sections = document.querySelectorAll('section[id]');
+const items = document.querySelectorAll('.sidebar-item[href]');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      items.forEach(i => i.classList.remove('active'));
+      const match = document.querySelector(`.sidebar-item[href="#${entry.target.id}"]`);
+      if (match) match.classList.add('active');
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

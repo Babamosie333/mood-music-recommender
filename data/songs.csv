@@ -1,0 +1,81 @@
+title,artist,genre,mood,energy,valence,tempo,danceability,acousticness,popularity
+Happy,Pharrell Williams,Pop,happy,0.85,0.96,160,0.89,0.10,95
+Can't Stop the Feeling,Justin Timberlake,Pop,happy,0.78,0.94,113,0.87,0.05,92
+Uptown Funk,Bruno Mars,Funk,happy,0.92,0.88,115,0.93,0.07,97
+Walking on Sunshine,Katrina and the Waves,Pop,happy,0.90,0.97,108,0.82,0.12,85
+Good as Hell,Lizzo,Pop,happy,0.72,0.95,96,0.77,0.24,88
+Levitating,Dua Lipa,Dance,happy,0.84,0.91,103,0.91,0.03,94
+Dancing Queen,ABBA,Disco,happy,0.76,0.97,104,0.81,0.06,89
+I Gotta Feeling,Black Eyed Peas,Dance,happy,0.82,0.88,128,0.84,0.05,90
+Best Day of My Life,American Authors,Indie Pop,happy,0.77,0.92,100,0.80,0.32,83
+Shake It Off,Taylor Swift,Pop,happy,0.80,0.94,160,0.90,0.07,93
+Holocene,Bon Iver,Indie,sad,0.22,0.25,135,0.38,0.76,78
+Motion Sickness,Phoebe Bridgers,Indie,sad,0.28,0.22,140,0.41,0.62,74
+The Night Will Always Win,Manchester Orchestra,Indie Rock,sad,0.45,0.18,95,0.44,0.40,68
+Skinny Love,Bon Iver,Acoustic,sad,0.18,0.20,100,0.34,0.88,75
+Lua,Bright Eyes,Acoustic,sad,0.12,0.15,92,0.30,0.92,70
+Fast Car,Tracy Chapman,Acoustic,sad,0.30,0.28,105,0.42,0.78,82
+The Drugs Don't Work,The Verve,Indie,sad,0.25,0.18,78,0.32,0.68,72
+Everybody Hurts,REM,Alternative,sad,0.20,0.16,68,0.28,0.74,80
+Mad World,Gary Jules,Acoustic,sad,0.14,0.10,66,0.25,0.86,84
+Hurt,Johnny Cash,Acoustic,sad,0.16,0.12,66,0.22,0.82,88
+Levels,Avicii,EDM,energetic,0.97,0.82,126,0.92,0.01,94
+Titanium,David Guetta,EDM,energetic,0.90,0.72,126,0.88,0.02,90
+Back in Black,AC/DC,Rock,energetic,0.96,0.65,94,0.73,0.03,93
+Enter Sandman,Metallica,Metal,energetic,0.95,0.42,123,0.70,0.02,89
+Smells Like Teen Spirit,Nirvana,Grunge,energetic,0.92,0.48,117,0.75,0.05,95
+Till I Collapse,Eminem,Rap,energetic,0.94,0.38,171,0.80,0.04,92
+Welcome to the Jungle,Guns N Roses,Hard Rock,energetic,0.97,0.55,124,0.72,0.03,91
+Lose Yourself,Eminem,Rap,energetic,0.91,0.35,171,0.78,0.05,96
+Power,Kanye West,Hip-Hop,energetic,0.88,0.44,90,0.76,0.06,88
+Thunderstruck,AC/DC,Rock,energetic,0.96,0.60,133,0.70,0.02,92
+Weightless,Marconi Union,Ambient,calm,0.10,0.45,60,0.20,0.95,82
+Blue in Green,Miles Davis,Jazz,calm,0.12,0.40,66,0.18,0.90,79
+Gymnopédie No.1,Erik Satie,Classical,calm,0.08,0.50,72,0.15,0.98,88
+Clair de Lune,Claude Debussy,Classical,calm,0.06,0.55,60,0.12,0.99,86
+Take Five,Dave Brubeck,Jazz,calm,0.22,0.58,172,0.30,0.85,80
+Porcelain,Moby,Chillout,calm,0.18,0.48,104,0.28,0.78,75
+Teardrop,Massive Attack,Trip-Hop,calm,0.20,0.35,90,0.35,0.70,82
+The Girl from Ipanema,João Gilberto,Bossa Nova,calm,0.25,0.70,130,0.40,0.82,83
+Air on a G String,Bach,Classical,calm,0.07,0.52,60,0.14,0.97,84
+Experience,Ludovico Einaudi,Instrumental,calm,0.15,0.55,72,0.20,0.88,90
+All of Me,John Legend,R&B,romantic,0.42,0.70,63,0.48,0.55,96
+Fly Me to the Moon,Frank Sinatra,Jazz,romantic,0.38,0.82,134,0.52,0.72,88
+Your Song,Elton John,Soft Rock,romantic,0.32,0.75,144,0.46,0.68,90
+At Last,Etta James,Soul,romantic,0.30,0.72,60,0.40,0.80,89
+Let's Stay Together,Al Green,Soul,romantic,0.35,0.80,120,0.55,0.65,86
+Crazy in Love,Beyoncé,R&B,romantic,0.78,0.75,100,0.80,0.10,94
+La Vie en Rose,Edith Piaf,French Pop,romantic,0.28,0.78,140,0.38,0.75,85
+Brown Sugar,D'Angelo,Neo Soul,romantic,0.45,0.72,84,0.60,0.50,82
+No One,Alicia Keys,Neo Soul,romantic,0.40,0.68,76,0.55,0.45,91
+The Way You Look Tonight,Tony Bennett,Jazz,romantic,0.32,0.85,108,0.48,0.78,84
+River Flows in You,Yiruma,Instrumental,focused,0.15,0.60,66,0.20,0.95,91
+Nuvole Bianche,Ludovico Einaudi,Instrumental,focused,0.12,0.58,52,0.18,0.96,88
+The Well-Tempered Clavier,Bach,Classical,focused,0.14,0.62,80,0.22,0.97,82
+Goldberg Variations,Glenn Gould,Classical,focused,0.10,0.65,72,0.16,0.98,84
+Your Hand in Mine,Explosions in the Sky,Post-Rock,focused,0.42,0.55,96,0.35,0.65,78
+First Breath After Coma,Explosions in the Sky,Post-Rock,focused,0.50,0.48,104,0.38,0.58,76
+Study Session Lo-Fi,ChilledCow,Lo-Fi,focused,0.18,0.55,80,0.30,0.80,85
+Coffee Shop,Lofi Fruits,Lo-Fi,focused,0.16,0.58,75,0.28,0.82,83
+An Ending Ascent,Brian Eno,Ambient,focused,0.08,0.50,80,0.15,0.94,75
+Structures from Silence,Steve Roach,Ambient,focused,0.06,0.52,60,0.12,0.96,70
+Master of Puppets,Metallica,Metal,angry,0.98,0.30,212,0.68,0.02,92
+Chop Suey,System of a Down,Metal,angry,0.96,0.28,144,0.65,0.03,90
+Down with the Sickness,Disturbed,Metal,angry,0.95,0.25,188,0.62,0.02,88
+Killing in the Name,Rage Against the Machine,Hard Rock,angry,0.94,0.32,104,0.70,0.03,93
+Holiday,Green Day,Punk,angry,0.88,0.40,152,0.75,0.04,87
+Anarchy in the UK,Sex Pistols,Punk,angry,0.90,0.35,176,0.68,0.05,82
+Till I Collapse,Eminem,Rap,angry,0.94,0.28,171,0.80,0.04,92
+Bodies,Drowning Pool,Metal,angry,0.97,0.22,164,0.60,0.02,85
+Highway to Hell,AC/DC,Hard Rock,angry,0.93,0.50,116,0.72,0.04,91
+Break Stuff,Limp Bizkit,Nu Metal,angry,0.95,0.25,120,0.65,0.03,84
+Take On Me,a-ha,80s Pop,nostalgic,0.68,0.88,168,0.72,0.18,92
+Africa,Toto,80s Pop,nostalgic,0.62,0.82,92,0.68,0.22,94
+Bohemian Rhapsody,Queen,Classic Rock,nostalgic,0.74,0.58,72,0.60,0.35,98
+Hotel California,Eagles,Classic Rock,nostalgic,0.55,0.52,75,0.55,0.40,96
+September,Earth Wind & Fire,70s Soul,nostalgic,0.80,0.90,126,0.85,0.12,91
+Lean on Me,Bill Withers,70s Soul,nostalgic,0.42,0.82,76,0.58,0.55,90
+No Scrubs,TLC,90s R&B,nostalgic,0.65,0.75,102,0.78,0.20,89
+Toxic,Britney Spears,2000s Pop,nostalgic,0.72,0.80,143,0.80,0.15,93
+Yeah,Usher,2000s R&B,nostalgic,0.82,0.84,102,0.88,0.08,90
+Don't Stop Believin,Journey,Classic Rock,nostalgic,0.70,0.78,119,0.64,0.25,95
